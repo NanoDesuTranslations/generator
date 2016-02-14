@@ -1,0 +1,7 @@
+contents:true
+destination:./build
+autobuild:false
+loader:{
+  debug:false
+  uri:false
+}
