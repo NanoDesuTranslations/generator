@@ -1,9 +1,12 @@
-var tungus = require('tungus');
-var mongoose = require('mongoose');
-
 var config = require('config');
 
-if(!config.get("loader.uri")){
+if(config.get("loader.uri").indexOf("tingodb://") != -1){
+  var tungus = require('tungus');
+  console.log("Tungus Activated.");
+}
+var mongoose = require('mongoose');
+
+if(!config.has("loader.uri")){
 	throw new Error("No database uri in config.");
 }
 mongoose.connect(config.get("loader.uri"), function (err) {
@@ -80,7 +83,7 @@ function plugin(){
 			
 			metalsmith._metadata.pages = pages;
 			metalsmith._metadata.series = series;
-			
+
 			pages.forEach(function(v,i){
 				var page = v;
 				var serie = series[page.series];
@@ -107,6 +110,7 @@ function plugin(){
 				}
 				files[path] = mspage;
 			});
+			mongoose.disconnect();
 			done();
 		});
 	};

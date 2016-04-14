@@ -4,7 +4,7 @@ var mongooseHidden = require('mongoose-hidden')();
 
 var pageSchema = new Schema({
     meta: {type:Object}
-  , series: {type: Number, index:true}
+  , series: {type: String, index:true}
   , content: {type: String, default:null}
   //, released: Date
 }, {toJSON:{virtuals:true}, toObject:{virtuals:true}})

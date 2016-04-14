@@ -10,7 +10,7 @@ extern.buildpath = function(page, serie){
   
   if(serie.config && serie.config.hierarchy){
     var hi = serie.config.hierarchy;
-    hi = hi.split(":");
+    //hi = hi.split(":");
     for(var i in hi){
       var part = hi[i];
       var partoptional = hi[i].charAt(0) == "?";
