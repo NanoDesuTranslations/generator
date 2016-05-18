@@ -45,7 +45,8 @@ ms.use(
       engine:'handlebars',
       directory:'layouts',
       //partials:'layouts/partials',
-      default: 'chapter.hb'
+      default: 'chapter.hb',
+      cache: false,
     }))
 );
 

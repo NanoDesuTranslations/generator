@@ -30,7 +30,8 @@ extern.buildpath = function(page, serie){
     //path += "/" + page.meta.url;
     path += "/index";
   }else if(page.meta && page.meta.title){
-    path += "/" + page.meta.title;
+    //path += "/" + page.meta.title;
+    path += "/index";
   }else{
     //path += "/" + md5(page.toString()).substr(0, 5);
     path += "/index";
