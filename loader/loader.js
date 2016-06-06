@@ -1,8 +1,8 @@
 var config = require('config');
 
 if(config.get("loader.uri").indexOf("tingodb://") != -1){
-  var tungus = require('tungus');
-  console.log("Tungus Activated.");
+	var tungus = require('tungus');
+	console.log("Tungus Activated.");
 }
 var mongoose = require('mongoose');
 
@@ -22,6 +22,7 @@ var Page = require('./models/page.js');
 var Series = require('./models/series.js');
 
 var structure = require("./structure");
+var fromtree = require("./fromtree");
 
 module.exports = plugin;
 
@@ -108,8 +109,14 @@ function plugin(){
 					console.log(path);
 					console.log(mspage);
 				}
-				files[path] = mspage;
+				//files[path] = mspage;
 			});
+			
+			var tree = structure.createTree(pages, series);
+			
+			var realpages = fromtree.pages(tree, series);
+			for(var k in realpages){files[k] = realpages[k];}
+			
 			mongoose.disconnect();
 			done();
 		});

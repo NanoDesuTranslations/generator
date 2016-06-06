@@ -24,23 +24,33 @@ ms.use(branch(["**/*.jpg", "**/*.png"])
   }))
 );
 
-ms.use(markdown({
-  smartypants: true,
-  gfm: true,
-  //tables: true
-}));
-
 var remote = function(filename, props, i){return props.series;};
+
+var replaceall = function (replaceThis, withThis, inThis) {
+  withThis = withThis.replace(/\$/g,"$$$$");
+  return inThis.replace(new RegExp(replaceThis.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&])/g,"\\$&"),"g"), withThis);
+};
 
 ms.use(
   branch(remote)
     .use(rootpath())
     .use(each(function(file, filename){
       var data = file.contents.toString();
-      data = data.replace("{{root}}", file.rootPath);
-      data = data.replace("{{asset}}", file.rootPath+"assets/");
+      data = replaceall("{{root}}", file.rootPath, data);
+      data = replaceall("{{asset}}", file.rootPath+"assets/", data);
+      data = replaceall("{{index}}", file.index_str || "", data);
       file.contents = new Buffer(data);
     }))
+);
+
+ms.use(markdown({
+  //smartypants: true,
+  gfm: true,
+  //tables: true
+}));
+
+ms.use(
+  branch(remote)
     .use(layouts({
       engine:'handlebars',
       directory:'layouts',
