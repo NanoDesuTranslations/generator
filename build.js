@@ -36,9 +36,10 @@ ms.use(
     .use(rootpath())
     .use(each(function(file, filename){
       var data = file.contents.toString();
+      data = replaceall("{{index}}", file.index_str || "", data);
       data = replaceall("{{root}}", file.rootPath, data);
       data = replaceall("{{asset}}", file.rootPath+"assets/", data);
-      data = replaceall("{{index}}", file.index_str || "", data);
+      data = replaceall("{{parent}}", file.parent_path || "/", data);
       file.contents = new Buffer(data);
     }))
 );

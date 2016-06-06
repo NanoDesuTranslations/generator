@@ -60,6 +60,12 @@ function filter(array, predicate){
 	return a;
 }
 
+function extend(a, b){
+  for(var k in b){
+    a[k] = b[k];
+  }
+}
+
 function setSeriesUrls(series){
 	for(var k in series){
 		if(series[k].config && series[k].config.url){
@@ -92,8 +98,9 @@ function plugin(){
 			
 			var tree = structure.createTree(pages, series);
 			
-			var realpages = fromtree.pages(tree, series);
-			for(var page_k in realpages){files[page_k] = realpages[page_k];}
+			//var newpages = fromtree.pages(tree, series);
+			//for(var page_k in pages){files[page_k] = pages[page_k];}
+			extend(files, fromtree.pages(tree, series));
 			
 			mongoose.disconnect();
 			done();

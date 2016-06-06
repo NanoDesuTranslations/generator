@@ -8,8 +8,9 @@ function extend(a, b){
 }
 
 /*Temp method to generate index page, this should probably be handled by templates.*/
-function indexPageStr(subpaths, current, hier){
+function indexPageStr(subpaths, current, hier, parent){
   var str = "auto generated index\n\n";
+  str += "[up]({{root}}{{parent}})\n\n"
   current = current.split("/");
   series_name = current[0];
   current = current.slice(1);
@@ -26,8 +27,9 @@ function indexPageStr(subpaths, current, hier){
   return str;
 }
 
-function collapse(node, serie, path){
+function collapse(node, serie, path, parent_path){
   var mspage = {mode:'0666', series:serie};
+  mspage.parent_path = parent_path
   mspage.subpaths = [];
   
   var pages = {};
@@ -36,7 +38,7 @@ function collapse(node, serie, path){
     if(subnode_k === "index"){continue;}
     var subnode = node[subnode_k];
     var subpath = path+"/"+subnode_k;
-    var subpages = collapse(subnode, serie, subpath);
+    var subpages = collapse(subnode, serie, subpath, path);
     extend(pages, subpages);
     mspage.subpaths.push([subpath, subnode_k]);//[absolute path, relative path]
   }
@@ -57,7 +59,7 @@ extern.pages = function(tree, series){
     var serie = series[serie_id];
     //var path = serie.name.toLowerCase().replace(" ", "-");
     var path = serie.url;
-    var newpages = collapse(tree[serie_id], serie, path);
+    var newpages = collapse(tree[serie_id], serie, path, "/");
     extend(pages, newpages);
   }
   return pages;
