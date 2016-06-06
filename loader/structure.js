@@ -5,42 +5,6 @@ module.exports = extern;
 
 var indexPages = [];
 
-extern.buildpath = function(page, serie){
-  var path = serie.url;
-  
-  if(serie.config && serie.config.hierarchy){
-    var hi = serie.config.hierarchy;
-    //hi = hi.split(":");
-    for(var i in hi){
-      var part = hi[i];
-      var partoptional = hi[i].charAt(0) == "?";
-      if(partoptional){
-        part = part.substring(1);
-      }
-      
-      if(page.meta[part]){
-        path += "/" + part + page.meta[part];
-      }else{
-        break;
-      }
-    }
-  }
-  
-  if(page.meta && page.meta.url){
-    //path += "/" + page.meta.url;
-    path += "/index";
-  }else if(page.meta && page.meta.title){
-    //path += "/" + page.meta.title;
-    path += "/index";
-  }else{
-    //path += "/" + md5(page.toString()).substr(0, 5);
-    path += "/index";
-  }
-  path += ".md";
-  
-  return path;
-};
-
 function groupBy(array, predicate){
 	var d = {};
 	for(var k in array){
@@ -71,11 +35,9 @@ function groupPages(hi, hi_i, pages){
   var grouped = groupBy(pages, function(page){
     return page.meta[hi[hi_i]];
   });
-  //console.log("|||||||")
-  //console.log(grouped)
+  
   if(hi_i+1 < hi.length){
     for(var k in grouped){
-      //console.log(k)
       grouped[k] = groupPages(hi, hi_i+1, grouped[k])
     }
   }else{
@@ -88,20 +50,6 @@ function groupPages(hi, hi_i, pages){
   }
   
   return grouped;
-}
-
-/**
-This function expects every leaf in the tree to be an object with only an index key
-*/
-function addIndexMeta(pages){
-  var subpages = [];
-  for(var sub_k in pages){
-    if(sub_k === "index"){continue;}
-    //console.log(sub_k)
-    pages[sub_k] = addIndexMeta(pages[sub_k]);
-  }
-  
-  return pages;
 }
 
 /*

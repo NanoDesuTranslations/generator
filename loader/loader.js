@@ -60,6 +60,17 @@ function filter(array, predicate){
 	return a;
 }
 
+function setSeriesUrls(series){
+	for(var k in series){
+		if(series[k].config && series[k].config.url){
+			series[k].url = series[k].config.url;
+		}else{
+			var url = series[k].name.toLowerCase().replace(" ", "-");
+			series[k].url = url;
+		}
+	}
+}
+
 /**
  * A Metalsmith plugin to load pages.
  *
@@ -69,53 +80,20 @@ function filter(array, predicate){
 function plugin(){
 	return function(files, metalsmith, done){
 		load(function(pages, series){
-			metalsmith.pages = pages;
-			metalsmith.series = series;
-			
-			for(var k in series){
-				if(series[k].config && series[k].config.url){
-					series[k].url = series[k].config.url;
-				}else{
-					var url = series[k].name.toLowerCase().replace(" ", "-");
-					series[k].url = url;
-				}
-			}
+			setSeriesUrls(series);
 			series = dictBy(series, function(v){return v.id;});
 			
+			//metalsmith.pages = pages;
+			//metalsmith.series = series;
+			
+			//make data available to templates
 			metalsmith._metadata.pages = pages;
 			metalsmith._metadata.series = series;
-
-			pages.forEach(function(v,i){
-				var page = v;
-				var serie = series[page.series];
-				if(!serie){return;}
-				
-				var path = structure.buildpath(page, serie);
-				
-				var mspage = {mode:'0666', series:serie};
-				if(page.content && config.get("contents")){
-					mspage.contents = new Buffer(page.content);
-				}else{
-					mspage.contents = new Buffer("");
-				}
-				if(typeof page.meta != 'string'){
-					for(var k in page.meta){
-						if(!mspage[k]){
-							mspage[k] = page.meta[k];
-						}
-					}
-				}
-				if(config.get('loader.debug')){
-					console.log(path);
-					console.log(mspage);
-				}
-				//files[path] = mspage;
-			});
 			
 			var tree = structure.createTree(pages, series);
 			
 			var realpages = fromtree.pages(tree, series);
-			for(var k in realpages){files[k] = realpages[k];}
+			for(var page_k in realpages){files[page_k] = realpages[page_k];}
 			
 			mongoose.disconnect();
 			done();

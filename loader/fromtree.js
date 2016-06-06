@@ -55,7 +55,8 @@ extern.pages = function(tree, series){
   pages = {};
   for(var serie_id in tree){
     var serie = series[serie_id];
-    var path = serie.name.toLowerCase().replace(" ", "-");
+    //var path = serie.name.toLowerCase().replace(" ", "-");
+    var path = serie.url;
     var newpages = collapse(tree[serie_id], serie, path);
     extend(pages, newpages);
   }
