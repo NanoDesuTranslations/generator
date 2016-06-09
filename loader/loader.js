@@ -98,6 +98,32 @@ function plugin(){
 			
 			var tree = structure.createTree(pages, series);
 			
+			metalsmith._metadata.navigation = [
+				{label:"About this translation"},
+				{
+					label:"Volume 1",
+					items:[
+						{label:"Color Illustrations"},
+						{
+							label:"Part 1: Amaterasu",
+							items:[
+								{label:"Chapter 1"},
+								{
+									label:"Chapter 2", 
+									items:[
+										{label:"2-1"},
+										{label:"2-2"},
+									]
+								},
+							]
+						},
+					]
+				},
+				{label:"Volume 2"},
+				{label:"Update History"},
+				{label:"Contact Us"},
+			];
+			
 			//var newpages = fromtree.pages(tree, series);
 			//for(var page_k in pages){files[page_k] = pages[page_k];}
 			extend(files, fromtree.pages(tree, series));

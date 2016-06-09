@@ -40,56 +40,36 @@
        <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav centered">
-          <li><a href="#">About this translation</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Volume 1<span class="caret"></span></a>
-            <ul class="dropdown-menu" data-submenu>
-              <li><a href="#">Color Illustrations {{dank}}</a></li>
-              <li class="dropdown-submenu">
-                <a href="#">Part 1: Amaterasu</a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Chapter 1</a></li>
-                  <li><a href="#">Chapter 2</a></li>
-                  <li><a href="#">Chapter 3</a></li>
-                  <li><a href="#">Chapter 4</a></li>
-                  <li><a href="#">Chapter 5</a></li>
-                  <li><a href="#">Chapter 6</a></li>
-                  <li><a href="#">Chapter 7</a></li>
+          {{#*inline "hb-dropdown"}}
+            {{#each items}}
+              {{#if items}}
+                <li class="dropdown-submenu">
+                  <a href="#">{{label}}</a>
+                  <ul class="dropdown-menu">
+                    {{> hb-dropdown}}
+                  </ul>
+                </li>
+              {{else}}
+                <li><a href="#">{{label}}</a></li>
+              {{/if}}
+            {{/each}}
+          {{/inline}}
+          
+          {{#each navigation}}
+            {{#if items}}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <span>{{label}}</span>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" data-submenu>
+                  {{> hb-dropdown}}
                 </ul>
               </li>
-              <li class="dropdown-submenu">
-                <a href="#">Part 2: Yamata no Orochi</a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Chapter 8</a></li>
-                  <li><a href="#">Chapter 9</a></li>
-                  <li><a href="#">Chapter 10</a></li>
-                  <li><a href="#">Chapter 11</a></li>
-                  <li><a href="#">Chapter 12</a></li>
-                  <li><a href="#">Chapter 13</a></li>
-                  <li><a href="#">Chapter 14</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu">
-                <a href="#">Part 3: Ninigi no Mikoto</a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Chapter 15</a></li>
-                  <li><a href="#">Chapter 16</a></li>
-                  <li><a href="#">Chapter 17</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Afterword</a></li>
-              <li><a href="#">PDF and ePub Version</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Volume 2<span class="caret"></span></a>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Volume 3<span class="caret"></span></a>
-          </li>
-          <li><a href="#">Update History</a></li>
-          <li><a href="#">Contact Us</a></li>
+            {{else}}
+              <li><a href="#">{{label}}</a></li>
+            {{/if}}
+          {{/each}}
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
