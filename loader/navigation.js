@@ -63,7 +63,7 @@ extern.fromtree = function(tree, series){
     var s_nav = buildNavigation(tree[series_k], hier);
     s_nav.splice(0, 0, {label:"About this translation"})
     s_nav.push({label:"Update History"})
-    s_nav.push({label:"Contact Us", path:"contact"})
+    s_nav.push({label:"Contact Us", path:serie.url + "/contact"})
     navigation[series_k] = s_nav;
   }
   

@@ -26,7 +26,7 @@ function groupPages(hi, hi_i, pages){
     pages = pages.filter(function(page){
       if(page.meta && page.meta[hi[hi_i]]){
         return true;
-      }else{
+      }else if(page.meta[hi[0]]){
         index = page;
       }
       return false;
@@ -38,15 +38,15 @@ function groupPages(hi, hi_i, pages){
   
   if(hi_i+1 < hi.length){
     for(var k in grouped){
-      grouped[k] = groupPages(hi, hi_i+1, grouped[k])
+      grouped[k] = groupPages(hi, hi_i+1, grouped[k]);
     }
   }else{
     for(var k in grouped){
-      grouped[k] = {"index":grouped[k][0]}
+      grouped[k] = {"index":grouped[k][0]};
     }
   }
   if(index !== null){
-    grouped['index'] = index;
+    grouped.index = index;
   }
   
   return grouped;
@@ -75,4 +75,24 @@ extern.createTree = function(pages, series){
     }
   }
   return final_tree;
+};
+
+extern.getSpecial = function(pages, series, byUrl){
+  var special_pages = {}
+  
+  for(var series_i in series){
+    var serie = series[series_i];
+    
+    var series_pages = pages.filter(function(page){
+      return page.series === serie.id;
+    });
+    
+    var series_pages_special = series_pages.filter(function(page){
+      return page.meta.path;
+    });
+    
+    special_pages[byUrl ? serie.url:serie.id] = series_pages_special;
+  }
+  
+  return special_pages;
 };

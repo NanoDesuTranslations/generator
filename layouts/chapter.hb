@@ -22,8 +22,8 @@
 <body>
   <nav class="navbar navbar-default box">
     <div class="container header-image">
-      <a href="http://www.nanodesutranslations.wordpress.com">
-        <img class="img-responsive" border="0" alt="" src="https://sasamisanthetranslation.files.wordpress.com/2013/08/sasami4.png" />
+      <a href="{{rootPath}}{{series.url}}">
+        <img class="img-responsive" border="0" alt="" src="{{series.config.header-url}}" />
       </a>
     </div>
     <div class="container">
@@ -46,12 +46,12 @@
                 <li class="dropdown-submenu">
                   <a href="#">{{label}}</a>
                   <ul class="dropdown-menu">
-                    {{> hb-dropdown rootPath=../rootPath}}
+                    {{> hb-dropdown}}
                   </ul>
                 </li>
               {{else}}
                 {{#if path}}
-                  <li><a href="{{../rootPath}}{{path}}">{{label}}</a></li>
+                  <li><a href="{{@root.rootPath}}{{path}}">{{label}}</a></li>
                 {{else}}
                   <li><a href="#">{{label}}</a></li>
                 {{/if}}
@@ -67,12 +67,12 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" data-submenu>
-                  {{> hb-dropdown rootPath=../rootPath}}
+                  {{> hb-dropdown}}
                 </ul>
               </li>
             {{else}}
               {{#if path}}
-                <li><a href="{{../rootPath}}{{path}}">{{label}}</a></li>
+                <li><a href="{{@root.rootPath}}{{path}}">{{label}}</a></li>
               {{else}}
                 <li><a href="#">{{label}}</a></li>
               {{/if}}
