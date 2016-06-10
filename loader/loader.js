@@ -120,6 +120,7 @@ function plugin(){
           var mspage = {mode:'0666'};
           mspage.series = serie;
           mspage.parent_path = serie.url;
+          mspage.title = s_page.meta.title || ""
           
           mspage.contents = new Buffer(s_page.content || "");
           
