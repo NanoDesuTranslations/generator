@@ -39,7 +39,7 @@ ms.use(
       data = replaceall("{{index}}", file.index_str || "", data);
       data = replaceall("{{root}}", file.rootPath, data);
       data = replaceall("{{asset}}", file.rootPath+"assets/", data);
-      data = replaceall("{{parent}}", file.parent_path || "/", data);
+      data = replaceall("{{parent}}", file.parent_path || "", data);
       file.contents = new Buffer(data);
     }))
 );

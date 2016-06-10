@@ -49,6 +49,7 @@ function collapse(node, serie, path, parent_path){
   if(node.index && node.index.content){
     mspage.index_str = indexPageStr(mspage.subpaths, path, serie.config.hierarchy);
     mspage.contents = new Buffer(node.index.content);
+    mspage.title = node.index.meta.title;
   }else{
     mspage.contents = new Buffer(indexPageStr(mspage.subpaths, path, serie.config.hierarchy));
   }
@@ -62,7 +63,7 @@ extern.pages = function(tree, series){
     var serie = series[serie_id];
     //var path = serie.name.toLowerCase().replace(" ", "-");
     var path = serie.url;
-    var newpages = collapse(tree[serie_id], serie, path, "/");
+    var newpages = collapse(tree[serie_id], serie, path, "");
     extend(pages, newpages);
   }
   return pages;
