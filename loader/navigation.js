@@ -39,6 +39,9 @@ extern.fromtree = function(tree, series){
         label += ": " + s_node.index.meta.title;
       }catch(err){}
       var s_data = {label:label};
+      try{
+        s_data.path = s_node.index.path
+      }catch(err){}
       
       var items = buildNavigation(s_node, hier.slice(1));
       if(items){
@@ -58,6 +61,9 @@ extern.fromtree = function(tree, series){
     var hier = serie.config.hierarchy;
     
     var s_nav = buildNavigation(tree[series_k], hier);
+    s_nav.splice(0, 0, {label:"About this translation"})
+    s_nav.push({label:"Update History"})
+    s_nav.push({label:"Contact Us", path:"contact"})
     navigation[series_k] = s_nav;
   }
   

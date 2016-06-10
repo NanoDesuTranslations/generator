@@ -99,14 +99,15 @@ function plugin(){
       
       var tree = structure.createTree(pages, series);
       
+      //var newpages = fromtree.pages(tree, series);
+      //for(var page_k in pages){files[page_k] = pages[page_k];}
+      //fromtree.pages adds paths to structure
+      extend(files, fromtree.pages(tree, series));
+      
       navigation_data = navigation.fromtree(tree, series);
       for(var series_k in navigation_data){
         series[series_k].navigation = navigation_data[series_k];
       }
-      
-      //var newpages = fromtree.pages(tree, series);
-      //for(var page_k in pages){files[page_k] = pages[page_k];}
-      extend(files, fromtree.pages(tree, series));
       
       mongoose.disconnect();
       done();

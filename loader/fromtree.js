@@ -29,11 +29,14 @@ function indexPageStr(subpaths, current, hier, parent){
 
 function collapse(node, serie, path, parent_path){
   var mspage = {mode:'0666', series:serie};
-  mspage.parent_path = parent_path
+  mspage.parent_path = parent_path;
   mspage.subpaths = [];
   
   var pages = {};
   pages[path+"/index.md"] = mspage;
+  if(node.index !== undefined){
+    node.index.path = path;
+  }
   for(var subnode_k in node){
     if(subnode_k === "index"){continue;}
     var subnode = node[subnode_k];

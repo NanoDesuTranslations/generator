@@ -46,11 +46,15 @@
                 <li class="dropdown-submenu">
                   <a href="#">{{label}}</a>
                   <ul class="dropdown-menu">
-                    {{> hb-dropdown}}
+                    {{> hb-dropdown rootPath=../rootPath}}
                   </ul>
                 </li>
               {{else}}
-                <li><a href="#">{{label}}</a></li>
+                {{#if path}}
+                  <li><a href="{{../rootPath}}{{path}}">{{label}}</a></li>
+                {{else}}
+                  <li><a href="#">{{label}}</a></li>
+                {{/if}}
               {{/if}}
             {{/each}}
           {{/inline}}
@@ -63,11 +67,15 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" data-submenu>
-                  {{> hb-dropdown}}
+                  {{> hb-dropdown rootPath=../rootPath}}
                 </ul>
               </li>
             {{else}}
-              <li><a href="#">{{label}}</a></li>
+              {{#if path}}
+                <li><a href="{{../rootPath}}{{path}}">{{label}}</a></li>
+              {{else}}
+                <li><a href="#">{{label}}</a></li>
+              {{/if}}
             {{/if}}
           {{/each}}
         </ul>
