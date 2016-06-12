@@ -1,9 +1,12 @@
 create config/local.json
 ```
-dbfile:/path/to/mongoose/db
+loader:{
+  debug:true
+  uri: mongodb://user:pass@host:port
+}
 ```
 
-eg
+or
 ```
 dbfile:tingodb://C:\api\db\test
 ```
