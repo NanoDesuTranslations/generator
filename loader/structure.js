@@ -65,6 +65,7 @@ extern.createTree = function(pages, series){
     
     if(serie.config && serie.config.hierarchy){
       var hi = serie.config.hierarchy;
+      if(hi.length === 0){continue;}
       
       var series_pages = pages.filter(function(page){
         return page.series === serie.id;
