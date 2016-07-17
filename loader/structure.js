@@ -70,7 +70,7 @@ extern.createTree = function(pages, series){
       var series_pages = pages.filter(function(page){
         return page.series === serie.id;
       });
-      var newpages = groupPages(hi, 0, pages, serie);
+      var newpages = groupPages(hi, 0, series_pages, serie);
       
       final_tree[serie.id] = newpages;
     }
