@@ -22,11 +22,14 @@ function groupBy(array, predicate){
 
 function groupPages(hi, hi_i, pages){
   var index = null;
+  var special = [];
   if(hi[hi_i].charAt(0) !== "?"){
     pages = pages.filter(function(page){
       if(page.meta && page.meta[hi[hi_i]]){
         return true;
-      }else if(page.meta[hi[0]]){
+      }else if(page.meta && page.meta.path){
+        special.push(page);
+      }else if(page.meta){
         index = page;
       }
       return false;
@@ -45,6 +48,12 @@ function groupPages(hi, hi_i, pages){
       grouped[k] = {"index":grouped[k][0]};
     }
   }
+  
+  for(var i in special){
+    var page = special[i];
+    grouped[page.meta.path] = {"index": page};
+  }
+  
   if(index !== null){
     grouped.index = index;
   }

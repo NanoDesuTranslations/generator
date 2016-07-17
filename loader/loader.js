@@ -110,24 +110,6 @@ function plugin(){
         series[series_k].navigation = navigation_data[series_k];
       }
       
-      var special = structure.getSpecial(pages, series);
-      
-      for(var special_series_k in special){
-        for(var special_k in special[special_series_k]){
-          var serie = series[special_series_k]
-          var s_page = special[special_series_k][special_k];
-          
-          var mspage = {mode:'0666'};
-          mspage.series = serie;
-          mspage.parent_path = serie.url;
-          mspage.title = s_page.meta.title || ""
-          
-          mspage.contents = new Buffer(s_page.content || "");
-          
-          files[serie.url + "/" + s_page.meta.path + "/index.md"] = mspage;
-        }
-      }
-      
       mongoose.disconnect();
       done();
     });
