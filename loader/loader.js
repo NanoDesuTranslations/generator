@@ -91,7 +91,7 @@ function plugin(){
       series = dictBy(series, function(v){return v.id;});
       
       pages = pages.filter(function(page){
-        return page.meta && page.meta.status >= 2;
+        return page.meta && page.meta.status >= 1;
       });
       //metalsmith.pages = pages;
       //metalsmith.series = series;
