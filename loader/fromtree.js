@@ -10,7 +10,7 @@ function extend(a, b){
 /*Temp method to generate index page, this should probably be handled by templates.*/
 function indexPageStr(subpaths, current, hier, parent){
   var str = "auto generated index\n\n";
-  str += "[up]({{root}}{{parent}})\n\n"
+  str += "[up]({{root}}{{parent}})\n\n";
   current = current.split("/");
   series_name = current[0];
   current = current.slice(1);
@@ -27,6 +27,30 @@ function indexPageStr(subpaths, current, hier, parent){
   return str;
 }
 
+function sorted_node_keys(node){
+  var keys = Object.keys(node);
+  keys = keys.sort(function(a, b){
+    a_k = a;
+    b_k = b;
+    a = node[a].index;
+    b = node[b].index;
+    if(a === undefined || b === undefined){return 0;}
+    else if(a === undefined){return -1;}
+    else if(b === undefined){return 1;}
+    else if(a.meta.order === undefined && b.meta.order === undefined){
+      if(a_k < b_k){return -1;}
+      else if(a_k > b_k){return 1;}
+      else{return 0;}
+    }
+    else if(a.meta.order === undefined){return b.meta.order<0?-1:1;}
+    else if(b.meta.order === undefined){return a.meta.order<0?1:-1;}
+    else if(a.meta.order < b.meta.order){return -1;}
+    else if(a.meta.order > b.meta.order){return 1;}
+    else{return 0;}
+  });
+  return keys;
+}
+
 function collapse(node, serie, path, parent_path){
   var mspage = {mode:'0666', series:serie};
   mspage.parent_path = parent_path;
@@ -37,7 +61,7 @@ function collapse(node, serie, path, parent_path){
   if(node.index !== undefined){
     node.index.path = path;
   }
-  for(var subnode_k in node){
+  for(var subnode_k of sorted_node_keys(node)){
     if(subnode_k === "index"){continue;}
     var subnode = node[subnode_k];
     var subpath = path+"/"+subnode_k;
