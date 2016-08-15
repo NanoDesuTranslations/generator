@@ -31,9 +31,19 @@ var replaceall = function (replaceThis, withThis, inThis) {
   return inThis.replace(new RegExp(replaceThis.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|<>\-\&])/g,"\\$&"),"g"), withThis);
 };
 
+conf_root_path = config.get("root_path");
+var rootpath_shim = false;
+if(conf_root_path === false){
+  rootpath_shim = rootpath();
+}else{
+  rootpath_shim = each(function(file, filename){
+    file.rootPath = conf_root_path;
+  });
+}
+
 ms.use(
   branch(remote)
-    .use(rootpath())
+    .use(rootpath_shim)
     .use(each(function(file, filename){
       var data = file.contents.toString();
       data = replaceall("{{index}}", file.index_str || "", data);

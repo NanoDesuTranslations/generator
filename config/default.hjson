@@ -1,6 +1,7 @@
 contents:true
 destination:./build
 autobuild:false
+root_path:false
 loader:{
   debug:false
   uri:false
