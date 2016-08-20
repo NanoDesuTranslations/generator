@@ -9,12 +9,13 @@ function extend(a, b){
 
 /*Temp method to generate index page, this should probably be handled by templates.*/
 function indexPageStr(subpaths, current, hier, parent){
-  var str = "auto generated index\n\n";
-  str += "[up]({{root}}{{parent}})\n\n";
+  var str = "";
+  //str = "auto generated index\n\n";
+  //str += "[up]({{root}}{{parent}})\n\n";
   current = current.split("/");
   series_name = current[0];
   current = current.slice(1);
-  str += "Series: " + series_name + "\n\n";
+  //str += "Series: " + series_name + "\n\n";
   //str += current + "\n\n"
   for(var i in current){
     str += hier[i] + " " + current[i] + ", ";
