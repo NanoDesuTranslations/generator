@@ -40,7 +40,10 @@ extern.fromtree = function(tree, series){
       }catch(err){}
       var s_data = {label:label};
       try{
-        s_data.path = s_node.index.path
+        s_data.path = s_node.index.path;
+      }catch(err){}
+      try{//don't include pages like about or contact in navigation
+        if(s_node.index.meta.path){continue;}
       }catch(err){}
       
       var items = buildNavigation(s_node, hier.slice(1));
