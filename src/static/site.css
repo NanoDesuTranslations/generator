@@ -1,11 +1,11 @@
 .outer-box {
 	background-color: #3c3c3c;
-    padding: 5px;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-    max-width: 1170px;
-    margin: 0 auto;
+	padding: 5px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+	max-width: 1170px;
+	margin: 0 auto;
 }
 
 .content-container .panel {
@@ -14,6 +14,10 @@
 
 html,body,body>.container,body>.container>.row,body>.container>.row>div {
 	height: 100%;
+}
+
+body {
+	color: #cccccc;
 }
 
 body>.container-fluid, body>.container {
