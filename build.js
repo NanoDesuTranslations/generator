@@ -15,6 +15,11 @@ var loader = require('./loader/loader.js');
 
 ms = Metalsmith(__dirname);
 
+ms.use(function(files, metalsmith, done){
+  metalsmith._metadata.enabled = config.get('enabled');
+  done();
+});
+
 ms.use(loader());
 
 ms.use(branch(["**/*.jpg", "**/*.png"])
@@ -59,6 +64,15 @@ ms.use(markdown({
   gfm: true,
   //tables: true
 }));
+
+ms.use(
+  branch(remote)
+    .use(each(function(file, filename){
+      console.log(file)
+      console.log(filename)
+      file.full_path = filename
+    }))
+)
 
 ms.use(
   branch(remote)

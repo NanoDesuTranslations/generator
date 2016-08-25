@@ -12,9 +12,9 @@
 	margin-bottom: 0px;
 }
 
-html,body,body>.container,body>.container>.row,body>.container>.row>div {
+/*html,body,body>.container,body>.container>.row,body>.container>.row>div {
 	height: 100%;
-}
+}*/
 
 body {
 	color: #cccccc;

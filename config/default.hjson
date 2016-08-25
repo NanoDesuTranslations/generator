@@ -6,3 +6,7 @@ loader:{
   debug:false
   uri:false
 }
+enabled:{
+  disqus:false
+  google_analytics:false
+}
