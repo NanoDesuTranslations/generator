@@ -68,11 +68,9 @@ ms.use(markdown({
 ms.use(
   branch(remote)
     .use(each(function(file, filename){
-      console.log(file)
-      console.log(filename)
-      file.full_path = filename
+      file.full_path = filename;
     }))
-)
+);
 
 ms.use(
   branch(remote)
