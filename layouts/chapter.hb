@@ -108,23 +108,27 @@
               <a href="http://www.nanodesutranslations.wordpress.com">
                 <img class="img-responsive" border="0" alt="" src="http://nanodesutranslations.files.wordpress.com/2014/05/h6wvikg.png" />
               </a>
-              {{#if enabled.twitter}}
-                <div id="twitter_container">
-                  <a class="twitter-timeline" data-height="425" data-dnt="true" data-theme="dark" href="https://twitter.com/Nano_Desu_Yo">Tweets by Nano_Desu_Yo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
-              {{/if}}
-              {{#if enabled.facebook}}
-                <div id="fb-root"></div>
-                <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
-                fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));</script>
-                <div class="fb-page" data-href="https://www.facebook.com/NanodesuTranslations" data-tabs="timeline" data-height="130" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/NanodesuTranslations" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/NanodesuTranslations">NanoDesu Translations</a></blockquote></div>
-              {{/if}}
             </p>
+            {{#if enabled.twitter}}
+              <div id="twitter_container">
+                <a class="twitter-timeline" data-height="425" data-dnt="true" data-theme="dark" href="https://twitter.com/Nano_Desu_Yo">Tweets by Nano_Desu_Yo</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+            {{/if}}
+            {{#if enabled.facebook}}
+              <div id="fb-root"></div>
+              <script>(function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
+              fjs.parentNode.insertBefore(js, fjs);
+              }(document, 'script', 'facebook-jssdk'));</script>
+              <div class="fb-page" data-href="https://www.facebook.com/NanodesuTranslations" data-tabs="timeline" data-height="130" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/NanodesuTranslations" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/NanodesuTranslations">NanoDesu Translations</a></blockquote></div>
+            {{/if}}
+            <div class="textwidget" style="margin-top:10px;color:#888888;">
+              <p>The work translated on this website is the legal property of its original copyright holder. It is translated here without monetary incentive solely for the purposes of promoting domestic interest in the work and improving personal language proficiency.</p>
+              <p>Any or all content of this website will be deleted upon the establishment of an official license for translation of this work into English or upon request by any of the original copyright holders for this work.</p>
+            </div>
           </div>
         </div>
       </div>
