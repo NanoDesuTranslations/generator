@@ -9,4 +9,6 @@ loader:{
 enabled:{
   disqus:false
   google_analytics:false
+  facebook:false
+  twitter:false
 }
