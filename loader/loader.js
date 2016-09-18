@@ -93,6 +93,9 @@ function plugin(){
       pages = pages.filter(function(page){
         return page.meta && page.meta.status >= 1;
       });
+      pages = pages.filter(function(page){
+        return page.meta && !page.meta.deleted;
+      });
       //metalsmith.pages = pages;
       //metalsmith.series = series;
       
