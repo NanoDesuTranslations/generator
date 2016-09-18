@@ -91,10 +91,13 @@ function plugin(){
       series = dictBy(series, function(v){return v.id;});
       
       pages = pages.filter(function(page){
-        return page.meta && page.meta.status >= 1;
+        return page.meta;
       });
       pages = pages.filter(function(page){
-        return page.meta && !page.meta.deleted;
+        return page.meta.status >= 1;
+      });
+      pages = pages.filter(function(page){
+        return !page.meta.deleted;
       });
       //metalsmith.pages = pages;
       //metalsmith.series = series;
