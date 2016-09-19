@@ -44,7 +44,10 @@
             {{#each items}}
               {{#if items}}
                 <li class="dropdown-submenu">
-                  <a href="#">{{label}}</a>
+                  <a href="javascript:void(0)">
+                    <span onclick="window.location = '{{@root.rootPath}}{{path}}'" style="z-index:2;padding:0 3px;">•</span>
+                    {{label}}
+                  </a>
                   <ul class="dropdown-menu">
                     {{> hb-dropdown}}
                   </ul>
