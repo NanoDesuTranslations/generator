@@ -2,6 +2,7 @@ contents:true
 destination:./build
 autobuild:false
 root_path:false
+min_status:1
 loader:{
   debug:false
   uri:false

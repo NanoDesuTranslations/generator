@@ -87,17 +87,28 @@ function setSeriesUrls(series){
 function plugin(){
   return function(files, metalsmith, done){
     load(function(pages, series){
+      var min_status = config.get('min_status');
+      
+      series = series.filter(function(serie){
+        return serie.config && serie.config.status >= min_status;
+      });
+      
       setSeriesUrls(series);
       series = dictBy(series, function(v){return v.id;});
       
       pages = pages.filter(function(page){
-        return page.meta;
+        var serie = series[page.series];
+        return page.meta && serie;
       });
       pages = pages.filter(function(page){
-        return page.meta.status >= 1;
+        return page.meta.status >= min_status;
       });
       pages = pages.filter(function(page){
         return !page.meta.deleted;
+      });
+      pages = pages.filter(function(page){
+        var config = series[page.series].config;
+        return !config.deleted;
       });
       //metalsmith.pages = pages;
       //metalsmith.series = series;

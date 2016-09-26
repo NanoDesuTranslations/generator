@@ -2,7 +2,8 @@
 title: Nanodesu
 ---
 
-h1 #{title}
+a(style="color:black" href="https://nanodesutranslations.wordpress.com/")
+  h1 #{title}
 each serie in series
   div
-    //a(href='#{serie.url}') #{serie.name}
+    a(href='#{serie.url}') #{serie.name}
