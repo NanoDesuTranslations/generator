@@ -45,7 +45,9 @@
               {{#if items}}
                 <li class="dropdown-submenu">
                   <a href="javascript:void(0)">
+                    {{#if path}}
                     <span onclick="window.location = '{{@root.rootPath}}{{path}}'" style="z-index:2;padding:0 3px;">•</span>
+                    {{/if}}
                     {{label}}
                   </a>
                   <ul class="dropdown-menu">
@@ -56,7 +58,7 @@
                 {{#if path}}
                   <li><a href="{{@root.rootPath}}{{path}}">{{label}}</a></li>
                 {{else}}
-                  <li><a href="#">{{label}}</a></li>
+                  <li><a href="javascript:void(0)">{{label}}</a></li>
                 {{/if}}
               {{/if}}
             {{/each}}
