@@ -25,7 +25,10 @@ function groupPages(hi, hi_i, pages){
   var special = [];
   if(hi[hi_i].charAt(0) !== "?"){
     pages = pages.filter(function(page){
-      if(page.meta && page.meta[hi[hi_i]] || page.meta[hi[hi_i]] === 0){
+      if(page.meta[hi[hi_i]] == "_0"){
+        page.meta[hi[hi_i]] = "0";
+      }
+      if(page.meta && page.meta[hi[hi_i]]){
         return true;
       }else if(page.meta && page.meta.path){
         special.push(page);
