@@ -36,7 +36,7 @@ extern.fromtree = function(tree, series){
       var s_node = node[k];
       var label = hier[0] + " " + k;
       try{
-        if(isNan(Number(s_node.index.meta.title))){
+        if(isNaN(Number(s_node.index.meta.title))){
           label = s_node.index.meta.title;
         }else{
           label += ": " + s_node.index.meta.title;
