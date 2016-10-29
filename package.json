@@ -16,7 +16,7 @@
     "metalsmith-layouts": "^1.4.2",
     "metalsmith-markdown": "^0.2.1",
     "metalsmith-rootpath": "0.1.4",
-    "mongoose": "3.8",
+    "mongoose": "4.6.5",
     "mongoose-hidden": "^0.5.1",
     "multimatch": "^2.1.0"
   },
