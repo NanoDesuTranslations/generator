@@ -24,6 +24,7 @@ var Series = require('./models/series.js');
 var structure = require("./structure");
 var fromtree = require("./fromtree");
 var navigation = require("./navigation");
+var blog = require("./blog");
 
 module.exports = plugin;
 
@@ -113,11 +114,21 @@ function plugin(){
       //metalsmith.pages = pages;
       //metalsmith.series = series;
       
+      blog_posts = pages.filter(function(page){
+        return page.meta.blog;
+      });
+      
+      pages = pages.filter(function(page){
+        return !page.meta.blog;
+      });
+      
       //make data available to templates
       metalsmith._metadata.pages = pages;
       metalsmith._metadata.series = series;
       
       var tree = structure.createTree(pages, series);
+      
+      tree = blog.addBlog(tree, blog_posts);
       
       //var newpages = fromtree.pages(tree, series);
       //for(var page_k in pages){files[page_k] = pages[page_k];}
